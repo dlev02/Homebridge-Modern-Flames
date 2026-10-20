@@ -1,0 +1,58 @@
+{
+  "name": "homebridge-modern-flames",
+  "displayName": "Modern Flames Fireplace",
+  "version": "1.1.0",
+  "description": "Local (LAN) Homebridge plugin for Tuya-based Modern Flames electric fireplaces: power, heat, flame/ember/downlight colors and flame effects as clearly labeled HomeKit tiles. No cloud.",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Drew",
+    "url": "https://drewlevinson.me"
+  },
+  "homepage": "https://github.com/dlev02/homebridge-modern-flames#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlev02/homebridge-modern-flames.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dlev02/homebridge-modern-flames/issues"
+  },
+  "files": [
+    "index.js",
+    "lib/",
+    "scripts/",
+    "config.schema.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "test": "node --test test/*.test.js",
+    "check": "npm run lint && npm test",
+    "prepublishOnly": "npm run check"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge",
+    "homekit",
+    "modern-flames",
+    "fireplace",
+    "electric-fireplace",
+    "tuya",
+    "tuya-local"
+  ],
+  "engines": {
+    "homebridge": "^1.8.0 || ^2.0.0",
+    "node": "^20.18.0 || ^22.10.0 || ^24.0.0"
+  },
+  "dependencies": {
+    "tuyapi": "^7.7.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "homebridge": "^2.4.0"
+  }
+}

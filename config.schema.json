@@ -1,0 +1,118 @@
+{
+  "pluginAlias": "ModernFlames",
+  "pluginType": "platform",
+  "singular": false,
+  "headerDisplay": "Local control of a Tuya-based Modern Flames electric fireplace on your home network. No cloud. Creates up to four tiles: **Fireplace** (power), **Fireplace Heat**, **Fireplace Lights** (Flames, Ember Bed, Downlight) and **Flame Effects**. You need the fireplace's device ID and local key: see [Finding the device ID and local key](https://github.com/dlev02/homebridge-modern-flames#finding-the-device-id-and-local-key). Add one entry per fireplace.",
+  "footerDisplay": "Lights and effects can never turn the fireplace on. Only **Fireplace** and **Fireplace Heat** can.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "Fireplace",
+        "required": true,
+        "description": "Used for the tiles: \"<Name>\", \"<Name> Heat\" and \"<Name> Lights\". Use a different name for each fireplace."
+      },
+      "deviceId": {
+        "title": "Device ID",
+        "type": "string",
+        "required": true,
+        "description": "Tuya device ID (shown in the Tuya IoT Platform device list)."
+      },
+      "ip": {
+        "title": "IP address",
+        "type": "string",
+        "format": "ipv4",
+        "required": true,
+        "description": "Give the fireplace a fixed (reserved) address in your router."
+      },
+      "key": {
+        "title": "Local key",
+        "type": "string",
+        "required": true,
+        "minLength": 16,
+        "maxLength": 16,
+        "description": "16-character local key. Removing and re-adding the fireplace in the app changes it."
+      },
+      "protocolVersion": {
+        "title": "Protocol version",
+        "type": "string",
+        "default": "3.3",
+        "description": "Tuya LAN protocol version. Modern Flames fireplaces seen so far use 3.3.",
+        "oneOf": [
+          { "title": "3.3", "enum": ["3.3"] },
+          { "title": "3.4", "enum": ["3.4"] },
+          { "title": "3.5", "enum": ["3.5"] }
+        ]
+      },
+      "model": {
+        "title": "Model (shown in the Home app)",
+        "type": "string",
+        "placeholder": "Electric Fireplace",
+        "description": "For example \"Orion Slim 60\". Display only."
+      },
+      "hideHeat": {
+        "title": "Hide the Fireplace Heat tile",
+        "type": "boolean",
+        "default": false
+      },
+      "hideLights": {
+        "title": "Hide the Fireplace Lights tile",
+        "type": "boolean",
+        "default": false
+      },
+      "hideEffects": {
+        "title": "Hide the Flame Effects tile",
+        "type": "boolean",
+        "default": false
+      },
+      "hideFlameStyles": {
+        "title": "Hide the Flame Style 1/2/3 switches",
+        "type": "boolean",
+        "default": false
+      },
+      "showColorCycle": {
+        "title": "Show Ember Bed and Downlight color-cycle switches",
+        "type": "boolean",
+        "default": false
+      },
+      "cosmeticWhileOff": {
+        "title": "Color and effect changes while the fireplace is off",
+        "type": "string",
+        "default": "queue",
+        "oneOf": [
+          { "title": "Save them and apply when the fireplace turns on (safe default)", "enum": ["queue"] },
+          { "title": "Send them right away (only if tested not to wake the fireplace)", "enum": ["send"] }
+        ]
+      }
+    }
+  },
+  "layout": [
+    {
+      "type": "fieldset",
+      "title": "Fireplace",
+      "items": [
+        "name",
+        "deviceId",
+        "ip",
+        { "key": "key", "type": "password" },
+        "protocolVersion"
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "Tiles",
+      "expandable": true,
+      "expanded": true,
+      "items": ["hideHeat", "hideLights", "hideEffects", "hideFlameStyles", "showColorCycle"]
+    },
+    {
+      "type": "fieldset",
+      "title": "Advanced",
+      "expandable": true,
+      "expanded": false,
+      "items": ["model", "cosmeticWhileOff"]
+    }
+  ]
+}
